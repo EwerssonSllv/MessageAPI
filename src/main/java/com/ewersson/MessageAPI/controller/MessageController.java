@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("message")
@@ -21,18 +20,23 @@ public class MessageController {
     }
     
     @GetMapping("/{id}")
-    public Optional<Message> getById(@PathVariable Integer id){
+    public Message getById(@PathVariable Integer id){
         return messageService.getById(id);
     }
 
+    @GetMapping("/byword/{word}")
+    public List<Message> getByWord(@PathVariable String word) {
+        return messageService.getMessagesByWord(word);
+    }
+
     @GetMapping
-    public Optional<List<Message>> getAll(){
-        return Optional.ofNullable(messageService.getAll());
+    public List<Message> getAll(){
+        return messageService.getAll();
     }
 
     @PutMapping("/{id}")
-    public Optional<Message> update(@PathVariable Integer id, @RequestBody Message message){
-        return Optional.ofNullable(messageService.updateMessage(id, message));
+    public Message update(@PathVariable Integer id, @RequestBody Message message){
+        return messageService.updateMessage(id, message);
     }
 
 }
