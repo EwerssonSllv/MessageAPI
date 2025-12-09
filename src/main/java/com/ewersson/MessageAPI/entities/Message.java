@@ -2,15 +2,9 @@ package com.ewersson.MessageAPI.entities;
 
 import jakarta.persistence.*;
 
-import java.io.Serial;
-import java.io.Serializable;
-
 @Entity
 @Table(name = "message")
-public class Message implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = 1L;
+public class Message{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
